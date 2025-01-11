@@ -247,7 +247,7 @@ const docTemplate = `{
                 "tags": [
                     "Controller"
                 ],
-                "summary": "Create SQL user",
+                "summary": "List SQL user",
                 "parameters": [
                     {
                         "description": "User login details",
@@ -349,7 +349,7 @@ const docTemplate = `{
                 "tags": [
                     "Controller"
                 ],
-                "summary": "Create SQL user",
+                "summary": "Get SQL user",
                 "parameters": [
                     {
                         "description": "User login details",
@@ -399,7 +399,7 @@ const docTemplate = `{
                 "tags": [
                     "Controller"
                 ],
-                "summary": "Create SQL user",
+                "summary": "Delete SQL user",
                 "parameters": [
                     {
                         "description": "User login details",
@@ -451,7 +451,7 @@ const docTemplate = `{
                 "tags": [
                     "Controller"
                 ],
-                "summary": "Create SQL user",
+                "summary": "Update SQL user",
                 "parameters": [
                     {
                         "description": "User login details",

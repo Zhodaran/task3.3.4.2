@@ -52,7 +52,7 @@ func (uc *UserController) CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 }
 
-// @Summary Create SQL user
+// @Summary Get SQL user
 // @Description This description created new SQL user
 // @Tags Controller
 // @Accept json
@@ -74,7 +74,7 @@ func (uc *UserController) GetUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(user)
 }
 
-// @Summary Create SQL user
+// @Summary Update SQL user
 // @Description This description created new SQL user
 // @Tags Controller
 // @Accept json
@@ -99,7 +99,7 @@ func (uc *UserController) UpdateUser(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
-// @Summary Create SQL user
+// @Summary Delete SQL user
 // @Description This description created new SQL user
 // @Tags Controller
 // @Accept json
@@ -120,7 +120,7 @@ func (uc *UserController) DeleteUser(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
-// @Summary Create SQL user
+// @Summary List SQL user
 // @Description This description created new SQL user
 // @Tags Controller
 // @Accept json

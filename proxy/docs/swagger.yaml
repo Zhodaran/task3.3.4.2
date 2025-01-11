@@ -286,7 +286,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/control.rErrorResponse'
-      summary: Create SQL user
+      summary: List SQL user
       tags:
       - Controller
     post:
@@ -353,7 +353,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/control.rErrorResponse'
-      summary: Create SQL user
+      summary: Delete SQL user
       tags:
       - Controller
     get:
@@ -386,7 +386,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/control.rErrorResponse'
-      summary: Create SQL user
+      summary: Get SQL user
       tags:
       - Controller
   /api/users{id}:
@@ -420,7 +420,7 @@ paths:
           description: Internal server error
           schema:
             $ref: '#/definitions/control.rErrorResponse'
-      summary: Create SQL user
+      summary: Update SQL user
       tags:
       - Controller
 securityDefinitions:
