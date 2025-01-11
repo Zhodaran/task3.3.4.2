@@ -248,17 +248,6 @@ const docTemplate = `{
                     "Controller"
                 ],
                 "summary": "List SQL user",
-                "parameters": [
-                    {
-                        "description": "User login details",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/repository.User"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "List successful",
@@ -352,13 +341,11 @@ const docTemplate = `{
                 "summary": "Get SQL user",
                 "parameters": [
                     {
-                        "description": "User login details",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/repository.User"
-                        }
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -402,13 +389,11 @@ const docTemplate = `{
                 "summary": "Delete SQL user",
                 "parameters": [
                     {
-                        "description": "User login details",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/repository.User"
-                        }
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -454,7 +439,14 @@ const docTemplate = `{
                 "summary": "Update SQL user",
                 "parameters": [
                     {
-                        "description": "User login details",
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "User detail to update",
                         "name": "user",
                         "in": "body",
                         "required": true,
@@ -580,7 +572,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "name": {
                     "type": "string"

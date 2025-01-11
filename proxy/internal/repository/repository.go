@@ -4,7 +4,7 @@ import "context"
 
 // User представляет собой модель пользователя
 type User struct {
-	ID        string  `json:"id"`
+	ID        int     `json:"id"`
 	Name      string  `json:"name"`
 	Email     string  `json:"email"`
 	DeletedAt *string `json:"deleted_at"` // Для логического удаления

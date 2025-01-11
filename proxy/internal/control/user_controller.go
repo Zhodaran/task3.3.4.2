@@ -57,7 +57,7 @@ func (uc *UserController) CreateUser(w http.ResponseWriter, r *http.Request) {
 // @Tags Controller
 // @Accept json
 // @Produce json
-// @Param user body repository.User true "User login details"
+// @Param id path int true "User ID"
 // @Success 200 {object} CreateResponse "Greate successful"
 // @Failure 400 {object} rErrorResponse "Invalid request"
 // @Failure 401 {object} rErrorResponse "Invalid credentials"
@@ -79,7 +79,8 @@ func (uc *UserController) GetUser(w http.ResponseWriter, r *http.Request) {
 // @Tags Controller
 // @Accept json
 // @Produce json
-// @Param user body repository.User true "User login details"
+// @Param id path int true "User ID"
+// @Param user body repository.User true "User detail to update"
 // @Success 200 {object} CreateResponse "Update successful"
 // @Failure 400 {object} rErrorResponse "Invalid request"
 // @Failure 401 {object} rErrorResponse "Invalid credentials"
@@ -104,7 +105,7 @@ func (uc *UserController) UpdateUser(w http.ResponseWriter, r *http.Request) {
 // @Tags Controller
 // @Accept json
 // @Produce json
-// @Param user body repository.User true "User login details"
+// @Param id path int true "User ID"
 // @Success 200 {object} CreateResponse "Delete successful"
 // @Failure 400 {object} rErrorResponse "Invalid request"
 // @Failure 401 {object} rErrorResponse "Invalid credentials"
@@ -125,7 +126,6 @@ func (uc *UserController) DeleteUser(w http.ResponseWriter, r *http.Request) {
 // @Tags Controller
 // @Accept json
 // @Produce json
-// @Param user body repository.User true "User login details"
 // @Success 200 {object} CreateResponse "List successful"
 // @Failure 400 {object} rErrorResponse "Invalid request"
 // @Failure 401 {object} rErrorResponse "Invalid credentials"

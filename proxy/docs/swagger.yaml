@@ -56,7 +56,7 @@ definitions:
       email:
         type: string
       id:
-        type: string
+        type: integer
       name:
         type: string
     type: object
@@ -260,13 +260,6 @@ paths:
       consumes:
       - application/json
       description: This description created new SQL user
-      parameters:
-      - description: User login details
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/repository.User'
       produces:
       - application/json
       responses:
@@ -328,12 +321,11 @@ paths:
       - application/json
       description: This description created new SQL user
       parameters:
-      - description: User login details
-        in: body
-        name: user
+      - description: User ID
+        in: path
+        name: id
         required: true
-        schema:
-          $ref: '#/definitions/repository.User'
+        type: integer
       produces:
       - application/json
       responses:
@@ -361,12 +353,11 @@ paths:
       - application/json
       description: This description created new SQL user
       parameters:
-      - description: User login details
-        in: body
-        name: user
+      - description: User ID
+        in: path
+        name: id
         required: true
-        schema:
-          $ref: '#/definitions/repository.User'
+        type: integer
       produces:
       - application/json
       responses:
@@ -395,7 +386,12 @@ paths:
       - application/json
       description: This description created new SQL user
       parameters:
-      - description: User login details
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: User detail to update
         in: body
         name: user
         required: true
