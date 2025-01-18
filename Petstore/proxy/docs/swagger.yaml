@@ -1,0 +1,297 @@
+definitions:
+  controller.CreateResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  controller.ErrorResponse:
+    properties:
+      "200":
+        type: string
+      "400":
+        type: string
+      "500":
+        type: string
+    type: object
+  repository.Category:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  repository.Pet:
+    properties:
+      category:
+        $ref: '#/definitions/repository.Category'
+      id:
+        type: integer
+      name:
+        type: string
+      photoUrls:
+        items:
+          type: string
+        type: array
+      status:
+        type: string
+      tags:
+        items:
+          $ref: '#/definitions/repository.Tag'
+        type: array
+    type: object
+  repository.Tag:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Этот эндпоинт позволяет получить адрес по наименованию
+  title: Swagger Petstore
+  version: "1.0"
+paths:
+  /pet:
+    post:
+      consumes:
+      - application/json
+      description: This description addadder new pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Pet'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: Add pet handler
+      tags:
+      - Controller
+  /pet/:
+    put:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Pet'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: Update pet
+      tags:
+      - Controller
+  /pet/{petId}:
+    delete:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Pet'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: Update pet
+      tags:
+      - Controller
+    get:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Pet'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: Update pet
+      tags:
+      - Controller
+    post:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Pet'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: Update pet
+      tags:
+      - Controller
+  /pet/{petId}/uploadImage:
+    post:
+      consumes:
+      - application/json
+      description: This description upload image pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Pet'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: Download image pet
+      tags:
+      - Controller
+  /pet/findByStatus:
+    get:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Pet'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: Find pet
+      tags:
+      - Controller
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
