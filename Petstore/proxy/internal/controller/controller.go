@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/go-chi/chi"
 )
@@ -322,14 +323,128 @@ func StoreInvent(w http.ResponseWriter, r *http.Request) {
 		log.Print("incorect method")
 		return
 	}
-	var inventory *[]repository.Store
+	statusCount := make(map[string]int)
+	for _, order := range repository.Orders {
+		statusCount[order.Status]++
+	}
 
 	// Устанавливаем заголовок ответа
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
 	// Кодируем питомца в JSON и отправляем ответ
-	if err := json.NewEncoder(w).Encode(inventory); err != nil {
+	if err := json.NewEncoder(w).Encode(statusCount); err != nil {
+		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
+	}
+}
+
+func StoreOrder(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		fmt.Println("Error Method Post")
+		return
+	}
+	var order repository.Order
+	if err := json.NewDecoder(r.Body).Decode(&order); err != nil {
+		http.Error(w, "Error decoding JSON", http.StatusBadRequest)
+		return
+	}
+
+	order.ShipDate = time.Now().UTC().Format(time.RFC3339Nano)
+
+	repository.Orders[order.Id] = order
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	if err := json.NewEncoder(w).Encode(order); err != nil {
+		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
+	}
+}
+
+func GetOrderId(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		fmt.Println("Error Method Post")
+		return
+	}
+
+	id := chi.URLParam(r, "orderId")
+	orderId, err := strconv.Atoi(id)
+	if err != nil {
+		http.Error(w, "Invalid ID supplied", http.StatusBadRequest)
+		return
+	}
+	var foundOrder *repository.Order
+	for _, order := range repository.Orders {
+		if order.Id == orderId {
+			foundOrder = &order
+			break
+		}
+	}
+
+	if foundOrder == nil {
+		http.Error(w, "Pet not found", http.StatusNotFound)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	if err := json.NewEncoder(w).Encode(foundOrder); err != nil {
+		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
+	}
+}
+
+// @Summary Delete order
+// @Description This description update pet
+// @Tags Store
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /store/order/{orderId} [delete]
+func DeleteOrderHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodDelete {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Получаем petId из URL
+	id := chi.URLParam(r, "orderId")
+
+	// Преобразуем строку в целое число
+	orderId, err := strconv.Atoi(id)
+	if err != nil {
+		http.Error(w, "Invalid ID supplied", http.StatusBadRequest)
+		return
+	}
+
+	// Ищем питомца в "базе данных"
+	var foundIndex int
+	var found bool
+	for i, order := range repository.Orders {
+		if order.Id == orderId {
+			foundIndex = i
+			found = true
+			break
+		}
+	}
+
+	if !found {
+		http.Error(w, "Pet not found", http.StatusNotFound)
+		return
+	}
+
+	// Удаляем питомца из "базы данных"
+	delete(repository.Orders, foundIndex)
+	// Устанавливаем заголовок ответа
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	// Отправляем успешный ответ
+	response := map[string]string{"message": "Pet deleted successfully"}
+	if err := json.NewEncoder(w).Encode(response); err != nil {
 		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
 	}
 }

@@ -1,6 +1,8 @@
 package repository
 
-import "context"
+import (
+	"context"
+)
 
 type Pet struct {
 	Id        int      `json:"id"`
@@ -21,11 +23,20 @@ type Tag struct {
 	Name string `json:"name"`
 }
 
+type Store struct {
+	Id int `json:"id"`
+}
+
+var (
+	Orders = make(map[int]Order)
+)
+
 type Order struct {
 	Id       int    `json:"id"`
 	PetId    int    `json:"petId"`
 	Quantity int    `json:"quantity"`
 	ShipDate string `json:"shipDate"`
+	Status   string `json:"status"`
 	Complete bool   `json:"complete"`
 }
 

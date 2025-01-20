@@ -31,7 +31,11 @@ func main() {
 	r.Post("/pet/{petId}", controller.GetPostHandler)
 	r.Delete("/pet/{petId}", controller.DeletePetHandler)
 
+	r.Post("/store/order", controller.StoreOrder)
 	r.Get("/store/inventory", controller.StoreInvent)
+	r.Get("/store/order/{orderId}", controller.GetOrderId)
+	r.Delete("/store/order/{orderId}", controller.DeleteOrderHandler)
+
 	fmt.Println("Starting server...")
 	if err := http.ListenAndServe(":8080", r); err != nil {
 		fmt.Println("Ошибка при запуске сервера:", err)

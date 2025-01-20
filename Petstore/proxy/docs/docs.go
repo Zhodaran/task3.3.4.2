@@ -374,6 +374,58 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/store/order/{orderId}": {
+            "delete": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Store"
+                ],
+                "summary": "Delete order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -406,6 +458,29 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "repository.Order": {
+            "type": "object",
+            "properties": {
+                "complete": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "petId": {
+                    "type": "integer"
+                },
+                "quantity": {
+                    "type": "integer"
+                },
+                "shipDate": {
+                    "type": "string"
+                },
+                "status": {
                     "type": "string"
                 }
             }

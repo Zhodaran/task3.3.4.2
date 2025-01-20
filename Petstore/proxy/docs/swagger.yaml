@@ -20,6 +20,21 @@ definitions:
       name:
         type: string
     type: object
+  repository.Order:
+    properties:
+      complete:
+        type: boolean
+      id:
+        type: integer
+      petId:
+        type: integer
+      quantity:
+        type: integer
+      shipDate:
+        type: string
+      status:
+        type: string
+    type: object
   repository.Pet:
     properties:
       category:
@@ -289,6 +304,40 @@ paths:
       summary: Find pet
       tags:
       - Controller
+  /store/order/{orderId}:
+    delete:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: Delete order
+      tags:
+      - Store
 securityDefinitions:
   BearerAuth:
     in: header
