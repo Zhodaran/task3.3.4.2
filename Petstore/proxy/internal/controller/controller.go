@@ -61,9 +61,11 @@ func AddPetHandler(w http.ResponseWriter, r *http.Request) {
 // @Summary Download image pet
 // @Description This description upload image pet
 // @Tags Controller
-// @Accept json
+// @Accept multipart/from-data
 // @Produce json
-// @Param user body repository.Pet true "Pet addadder"
+// @Param petId path int64 true "file to addadder"
+// @Param additionalMetadata formData string false "Additional data to pass tp server"
+// @Param file formData file true "File to upload"
 // @Success 200 {object} CreateResponse "Create successful"
 // @Failure 400 {object} ErrorResponse "Invalid request"
 // @Failure 401 {object} ErrorResponse "Invalid credentials"
@@ -129,7 +131,7 @@ func UpdatePetHandler(w http.ResponseWriter, r *http.Request) {
 // @Tags Controller
 // @Accept json
 // @Produce json
-// @Param user body repository.Pet true "Pet addadder"
+// @Param status query string true "Status values that need to be considered for filter" Ennums(availabe, pending, sold)
 // @Success 200 {object} CreateResponse "Create successful"
 // @Failure 400 {object} ErrorResponse "Invalid request"
 // @Failure 401 {object} ErrorResponse "Invalid credentials"

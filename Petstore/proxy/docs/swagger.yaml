@@ -239,15 +239,23 @@ paths:
   /pet/{petId}/uploadImage:
     post:
       consumes:
-      - application/json
+      - multipart/from-data
       description: This description upload image pet
       parameters:
-      - description: Pet addadder
-        in: body
-        name: user
+      - description: file to addadder
+        in: path
+        name: petId
         required: true
-        schema:
-          $ref: '#/definitions/repository.Pet'
+        type: integer
+      - description: Additional data to pass tp server
+        in: formData
+        name: additionalMetadata
+        type: string
+      - description: File to upload
+        in: formData
+        name: file
+        required: true
+        type: file
       produces:
       - application/json
       responses:
@@ -276,12 +284,11 @@ paths:
       - application/json
       description: This description update pet
       parameters:
-      - description: Pet addadder
-        in: body
-        name: user
+      - description: Status values that need to be considered for filter
+        in: query
+        name: status
         required: true
-        schema:
-          $ref: '#/definitions/repository.Pet'
+        type: string
       produces:
       - application/json
       responses:

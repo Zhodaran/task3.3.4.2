@@ -134,13 +134,11 @@ const docTemplate = `{
                 "summary": "Find pet",
                 "parameters": [
                     {
-                        "description": "Pet addadder",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/repository.Pet"
-                        }
+                        "type": "string",
+                        "description": "Status values that need to be considered for filter",
+                        "name": "status",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -327,7 +325,7 @@ const docTemplate = `{
             "post": {
                 "description": "This description upload image pet",
                 "consumes": [
-                    "application/json"
+                    "multipart/from-data"
                 ],
                 "produces": [
                     "application/json"
@@ -338,13 +336,24 @@ const docTemplate = `{
                 "summary": "Download image pet",
                 "parameters": [
                     {
-                        "description": "Pet addadder",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/repository.Pet"
-                        }
+                        "type": "integer",
+                        "description": "file to addadder",
+                        "name": "petId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Additional data to pass tp server",
+                        "name": "additionalMetadata",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "file",
+                        "description": "File to upload",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
                     }
                 ],
                 "responses": {
