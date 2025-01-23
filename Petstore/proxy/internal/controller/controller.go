@@ -318,6 +318,17 @@ func DeletePetHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// @Summary Id order
+// @Description This description update pet
+// @Tags Store
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /store/order [get]
 func StoreInvent(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		log.Print("incorect method")
@@ -338,6 +349,17 @@ func StoreInvent(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// @Summary Id order
+// @Description This description update pet
+// @Tags Store
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /store/order [post]
 func StoreOrder(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		fmt.Println("Error Method Post")
@@ -361,6 +383,17 @@ func StoreOrder(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// @Summary Id order
+// @Description This description update pet
+// @Tags Store
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /store/order/{orderId} [get]
 func GetOrderId(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		fmt.Println("Error Method Post")
@@ -446,5 +479,298 @@ func DeleteOrderHandler(w http.ResponseWriter, r *http.Request) {
 	response := map[string]string{"message": "Pet deleted successfully"}
 	if err := json.NewEncoder(w).Encode(response); err != nil {
 		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
+	}
+}
+
+// @Summary List user order
+// @Description This description update pet
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /user/createWithList [post]
+func CreateListHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method now allowed", http.StatusBadRequest)
+		return
+	}
+	var users []repository.User
+	if err := json.NewDecoder(r.Body).Decode(&users); err != nil {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(users)
+}
+
+// @Summary List user order
+// @Description This description update pet
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /user/{username} [get]
+func GettingUsername(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Lol this is not this method", http.StatusBadRequest)
+		return
+	}
+	username := chi.URLParam(r, "username")
+	var foundUser repository.User
+	for _, user := range repository.Users {
+		if username == user.Username {
+			foundUser = user
+			return
+		}
+	}
+	if err := json.NewEncoder(w).Encode(foundUser); err != nil {
+		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
+	}
+}
+
+// @Summary List user order
+// @Description This description update pet
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /user/{username} [put]
+func UpdateUsername(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPut {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	var user repository.User
+
+	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(user); err != nil {
+		http.Error(w, "Error encoding response", http.StatusInternalServerError)
+	}
+}
+
+// @Summary List user order
+// @Description This description update pet
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /user/{username} [delete]
+func Deleteuser(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodDelete {
+		http.Error(w, "Not pu method", http.StatusBadRequest)
+		return
+	}
+	username := chi.URLParam(r, "username")
+	var found bool = false
+	var foundIndex int
+	for i, user := range repository.Users {
+		if username == user.Username {
+			found = true
+			foundIndex = i
+			return
+		}
+	}
+	if !found {
+		http.Error(w, "User not found", http.StatusNotFound)
+		return
+	}
+	delete(repository.Users, foundIndex)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	// Отправляем успешный ответ
+	response := map[string]string{"message": "User deleted successfully"}
+	if err := json.NewEncoder(w).Encode(response); err != nil {
+		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
+	}
+}
+
+// @Summary List user order
+// @Description This description update pet
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /user/login [get]
+func LogUser(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	username := r.URL.Query().Get("username")
+	password := r.URL.Query().Get("password")
+	if username == "" || password == "" {
+		http.Error(w, "Invalid username/password supplied", http.StatusBadRequest)
+		return
+	}
+	var foundId int
+	var found bool = false
+	for i, user := range repository.Users {
+		if username == user.Username {
+			if password == user.Password {
+				foundId = i
+				found = true
+				return
+			}
+		}
+	}
+	if !found {
+		http.Error(w, "Error authorizaztion", http.StatusBadRequest)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	response := map[string]interface{}{
+		"message": "User logged in successfully",
+		"userId":  foundId,
+	}
+	if err := json.NewEncoder(w).Encode(response); err != nil {
+		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
+	}
+}
+
+// @Summary List user order
+// @Description This description update pet
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /user/logout [get]
+func LogoutUser(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Http error", http.StatusRequestEntityTooLarge)
+		return
+	}
+
+	response := UploadResponse{
+		Code:    200,
+		Type:    "unknown",
+		Message: "ok",
+	}
+
+	// Устанавливаем заголовок ответа
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	// Кодируем ответ в JSON и отправляем его клиенту
+	if err := json.NewEncoder(w).Encode(response); err != nil {
+		http.Error(w, "Ошибка при формировании ответа", http.StatusInternalServerError)
+	}
+}
+
+// @Summary List user order
+// @Description This description update pet
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /user/createWithArray [post]
+func CreateWithArray(w http.ResponseWriter, r *http.Request) {
+	// Проверяем метод запроса
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Декодируем входящие данные
+	var users []repository.User
+	if err := json.NewDecoder(r.Body).Decode(&users); err != nil {
+		http.Error(w, "Ошибка при декодировании JSON", http.StatusBadRequest)
+		return
+	}
+
+	// Здесь можно добавить логику для сохранения пользователей в базу данных
+
+	// Формируем ответ
+	response := UploadResponse{
+		Code:    200,
+		Type:    "unknown",
+		Message: "ok",
+	}
+
+	// Устанавливаем заголовок ответа
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	// Кодируем ответ в JSON и отправляем его клиенту
+	if err := json.NewEncoder(w).Encode(response); err != nil {
+		http.Error(w, "Ошибка при формировании ответа", http.StatusInternalServerError)
+	}
+}
+
+// @Summary List user order
+// @Description This description update pet
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param user body repository.Order true "Pet addadder"
+// @Success 200 {object} CreateResponse "Create successful"
+// @Failure 400 {object} ErrorResponse "Invalid request"
+// @Failure 401 {object} ErrorResponse "Invalid credentials"
+// @Failure 500 {object} ErrorResponse "Internal server error"
+// @Router /user/user [post]
+func CreateUser(w http.ResponseWriter, r *http.Request) {
+	// Проверяем метод запроса
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Декодируем входящие данные
+	var user repository.User
+	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+		http.Error(w, "Ошибка при декодировании JSON", http.StatusBadRequest)
+		return
+	}
+
+	// Здесь можно добавить логику для сохранения пользователя в базу данных
+
+	// Формируем ответ
+	response := UploadResponse{
+		Code:    200,
+		Type:    "unknown",
+		Message: "User created successfully",
+	}
+
+	// Устанавливаем заголовок ответа
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	// Кодируем ответ в JSON и отправляем его клиенту
+	if err := json.NewEncoder(w).Encode(response); err != nil {
+		http.Error(w, "Ошибка при формировании ответа", http.StatusInternalServerError)
 	}
 }

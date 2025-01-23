@@ -29,6 +29,7 @@ type Store struct {
 
 var (
 	Orders = make(map[int]Order)
+	Users  = make(map[int]User)
 )
 
 type Order struct {
@@ -45,6 +46,14 @@ var Inventory []Store
 var Pets []Pet
 
 type User struct {
+	Id         int    `json:"id"`
+	Username   string `json:"username"`
+	FirstName  string `json:"firstName"`
+	LastName   string `json:"LastName"`
+	Email      string `json:"email"`
+	Password   string `json:"password"`
+	Phone      string `json:"phone"`
+	UserStatus int    `json:"userStatus"`
 }
 
 type UserRepository interface {

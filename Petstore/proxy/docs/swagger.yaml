@@ -304,6 +304,73 @@ paths:
       summary: Find pet
       tags:
       - Controller
+  /store/order:
+    get:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: Id order
+      tags:
+      - Store
+    post:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: Id order
+      tags:
+      - Store
   /store/order/{orderId}:
     delete:
       consumes:
@@ -338,6 +405,309 @@ paths:
       summary: Delete order
       tags:
       - Store
+    get:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: Id order
+      tags:
+      - Store
+  /user/{username}:
+    delete:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: List user order
+      tags:
+      - user
+    get:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: List user order
+      tags:
+      - user
+    put:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: List user order
+      tags:
+      - user
+  /user/createWithArray:
+    post:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: List user order
+      tags:
+      - user
+  /user/createWithList:
+    post:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: List user order
+      tags:
+      - user
+  /user/login:
+    get:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: List user order
+      tags:
+      - user
+  /user/logout:
+    get:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: List user order
+      tags:
+      - user
+  /user/user:
+    post:
+      consumes:
+      - application/json
+      description: This description update pet
+      parameters:
+      - description: Pet addadder
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Create successful
+          schema:
+            $ref: '#/definitions/controller.CreateResponse'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/controller.ErrorResponse'
+      summary: List user order
+      tags:
+      - user
 securityDefinitions:
   BearerAuth:
     in: header

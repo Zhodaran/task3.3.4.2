@@ -23,6 +23,8 @@ import (
 
 func main() {
 	r := chi.NewRouter()
+
+	// Pet
 	r.Post("/pet", controller.AddPetHandler)
 	r.Post("/pet/{petId}/uploadImage", controller.UploadImageHandler)
 	r.Put("/pet/", controller.UpdatePetHandler)
@@ -31,10 +33,21 @@ func main() {
 	r.Post("/pet/{petId}", controller.GetPostHandler)
 	r.Delete("/pet/{petId}", controller.DeletePetHandler)
 
+	// Store
 	r.Post("/store/order", controller.StoreOrder)
 	r.Get("/store/inventory", controller.StoreInvent)
 	r.Get("/store/order/{orderId}", controller.GetOrderId)
 	r.Delete("/store/order/{orderId}", controller.DeleteOrderHandler)
+
+	// User
+	r.Post("/user/createWithList", controller.CreateListHandler)
+	r.Get("/user/{username}", controller.GettingUsername)
+	r.Put("/user/{username}", controller.UpdateUsername)
+	r.Delete("/user/{username}", controller.Deleteuser)
+	r.Get("/user/login", controller.LogUser)
+	r.Get("/user/logout", controller.LogoutUser)
+	r.Post("/user/createWithArray", controller.CreateWithArray)
+	r.Post("/user", controller.CreateUser)
 
 	fmt.Println("Starting server...")
 	if err := http.ListenAndServe(":8080", r); err != nil {

@@ -375,7 +375,159 @@ const docTemplate = `{
                 }
             }
         },
+        "/store/order": {
+            "get": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Store"
+                ],
+                "summary": "Id order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Store"
+                ],
+                "summary": "Id order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/store/order/{orderId}": {
+            "get": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Store"
+                ],
+                "summary": "Id order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            },
             "delete": {
                 "description": "This description update pet",
                 "consumes": [
@@ -388,6 +540,418 @@ const docTemplate = `{
                     "Store"
                 ],
                 "summary": "Delete order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/createWithArray": {
+            "post": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "List user order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/createWithList": {
+            "post": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "List user order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "get": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "List user order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/logout": {
+            "get": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "List user order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/user": {
+            "post": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "List user order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{username}": {
+            "get": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "List user order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "List user order",
+                "parameters": [
+                    {
+                        "description": "Pet addadder",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/repository.Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create successful",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/controller.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "This description update pet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "List user order",
                 "parameters": [
                     {
                         "description": "Pet addadder",
