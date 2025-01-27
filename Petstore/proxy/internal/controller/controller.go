@@ -2,22 +2,16 @@ package controller
 
 import (
 	"Petstore/internal/repository"
+	"Petstore/internal/service"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/go-chi/chi"
 )
-
-type UploadResponse struct {
-	Code    int    `json:"code"`
-	Type    string `json:"type"`
-	Message string `json:"message"`
-}
 
 type CreateResponse struct {
 	Message string `json:"message"`
@@ -45,17 +39,21 @@ func AddPetHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
-	var pet repository.Pet
 
+	var pet repository.Pet
 	err := json.NewDecoder(r.Body).Decode(&pet)
 	if err != nil {
-		http.Error(w, "Failed to decode JSON", http.StatusBadRequest)
+		http.Error(w, "FAil", http.StatusBadRequest)
+	}
+
+	createdPet, err := service.AddPet(pet)
+	if err != nil {
+		http.Error(w, "Fail", http.StatusInternalServerError)
 		return
 	}
-	repository.Pets = append(repository.Pets, pet)
 
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(pet)
+	json.NewEncoder(w).Encode(createdPet)
 }
 
 // @Summary Download image pet
@@ -87,11 +85,8 @@ func UploadImageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer file.Close()
-	response := UploadResponse{
-		Code:    200,
-		Type:    "succes",
-		Message: fmt.Sprintf("Image uploaded for pet ID %s with additional metadata: %s", petId, additionalMetadata),
-	}
+	response := service.AddImage(petId, additionalMetadata)
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
@@ -113,17 +108,8 @@ func UpdatePetHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-	var pet repository.Pet
+	service.UpdatePet(w, *r)
 
-	if err := json.NewDecoder(r.Body).Decode(&pet); err != nil {
-		http.Error(w, "Invalid request payload", http.StatusBadRequest)
-		return
-	}
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(pet); err != nil {
-		http.Error(w, "Error encoding response", http.StatusInternalServerError)
-	}
 }
 
 // @Summary Find pet
@@ -148,19 +134,8 @@ func FindByStatus(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Status paramete if required", http.StatusBadRequest)
 		return
 	}
+	service.FindStatus(w, *r, status)
 
-	var filteredPets []repository.Pet
-	for _, pet := range repository.Pets {
-		if strings.EqualFold(pet.Status, status) {
-			filteredPets = append(filteredPets, pet)
-		}
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(filteredPets); err != nil {
-		http.Error(w, "Error encoding response", http.StatusInternalServerError)
-	}
 }
 
 // @Summary Update pet
@@ -182,27 +157,7 @@ func GetPetByID(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error reverse")
 		return
 	}
-	var foundPet *repository.Pet
-	for _, pet := range repository.Pets {
-		if pet.Id == Id {
-			foundPet = &pet
-			break
-		}
-	}
-
-	if foundPet == nil {
-		http.Error(w, "Pet not found", http.StatusNotFound)
-		return
-	}
-
-	// Устанавливаем заголовок ответа
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-
-	// Кодируем питомца в JSON и отправляем ответ
-	if err := json.NewEncoder(w).Encode(foundPet); err != nil {
-		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
-	}
+	service.GetIdPet(w, *r, Id)
 }
 
 // @Summary Update pet
@@ -673,7 +628,7 @@ func LogoutUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := UploadResponse{
+	response := repository.UploadResponse{
 		Code:    200,
 		Type:    "unknown",
 		Message: "ok",
@@ -717,7 +672,7 @@ func CreateWithArray(w http.ResponseWriter, r *http.Request) {
 	// Здесь можно добавить логику для сохранения пользователей в базу данных
 
 	// Формируем ответ
-	response := UploadResponse{
+	response := repository.UploadResponse{
 		Code:    200,
 		Type:    "unknown",
 		Message: "ok",
@@ -761,7 +716,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	// Здесь можно добавить логику для сохранения пользователя в базу данных
 
 	// Формируем ответ
-	response := UploadResponse{
+	response := repository.UploadResponse{
 		Code:    200,
 		Type:    "unknown",
 		Message: "User created successfully",

@@ -4,6 +4,12 @@ import (
 	"context"
 )
 
+type UploadResponse struct {
+	Code    int    `json:"code"`
+	Type    string `json:"type"`
+	Message string `json:"message"`
+}
+
 type Pet struct {
 	Id        int      `json:"id"`
 	Category  Category `json:"category"`
@@ -62,4 +68,7 @@ type UserRepository interface {
 	Update(ctx context.Context, user User) error
 	Delete(ctx context.Context, id string) error
 	List(ctx context.Context, limit, offset int) ([]User, error)
+}
+
+type PetRepository interface {
 }
